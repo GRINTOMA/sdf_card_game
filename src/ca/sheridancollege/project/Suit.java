@@ -1,8 +1,7 @@
 package ca.sheridancollege.project;
 
 /**
- *
- * @author Richard
+ * Represents the Suits for the Card class.
  */
 public enum Suit {
     CLUBS(1, "Clubs", '\u2663'),

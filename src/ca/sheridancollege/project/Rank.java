@@ -1,6 +1,8 @@
 package ca.sheridancollege.project;
 
 /**
+ * 
+ * Represents the Ranks for Card class.
  *
  * @author Richard
  */
