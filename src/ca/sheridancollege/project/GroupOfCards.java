@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * An ArrayList of cards for tracking both the
- * player's hand alongside the deck and pile 
- * for the game.
+ * A concrete class that represents any grouping of cards for a Game.
+ * HINT, you might want to subclass this more than once.
+ * The group of cards has a maximum size attribute which is flexible for reuse.
+ * @author dancye, Richard (2020/04/10)
  */
 public class GroupOfCards 
 {
@@ -53,7 +54,7 @@ public class GroupOfCards
             for (Suit s : Suit.values()){
                 // will add in duplicates of the card if necessary
                 for (int i = 0; i < numOfDecks; i++)
-                    cards.add(new Card(r, s));
+                    cards.add(new FrenchCard(r, s));
             }
         }
     }
