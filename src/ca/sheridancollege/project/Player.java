@@ -13,9 +13,10 @@ public class Player
     private String playerID; //the unique ID for this player
     private GroupOfCards hand; // represents the player's hand
 
-    public Player(String name)
+    public Player(String name, GroupOfCards hand)
     {
-        playerID= name;
+        setPlayerID(name);
+        setHand(hand);
     }
     
     /**
@@ -34,11 +35,28 @@ public class Player
     {
         playerID = givenID;
     }
-    
+
     /**
-     * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
+     * @return the hand
      */
-    public void play(){}
+    public GroupOfCards getHand() {
+        return hand;
+    }
+
+    /**
+     * @param hand the hand to set
+     */
+    public void setHand(GroupOfCards hand) {
+        this.hand = hand;
+    }
     
+    // add card to hand
+    public void addCard(Card card){
+        getHand().addCard(card);
+    }
+    
+    //
+    public void playCard(Card card){
+        
+    }
 }
