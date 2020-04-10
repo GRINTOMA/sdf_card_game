@@ -8,12 +8,13 @@ package ca.sheridancollege.project;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * A concrete class that represents any grouping of cards for a Game.
- * HINT, you might want to subclass this more than once.
- * The group of cards has a maximum size attribute which is flexible for reuse.
- * @author dancye, Richard (2020/04/10)
- */
+/*
+* GroupOfCards is designed to represent both the player's hand
+* alongside the game's deck in which players will draw from.
+* It'll also represent the face-up pile in which cards will be
+* played.
+*/
+
 public class GroupOfCards 
 {
    
