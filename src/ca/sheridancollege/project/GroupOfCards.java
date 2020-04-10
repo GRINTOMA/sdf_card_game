@@ -18,7 +18,7 @@ public class GroupOfCards
 {
    
     //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
+    private ArrayList <FrenchCard> cards;
     private int size;//the size of the grouping
     
     // default constructor
@@ -26,7 +26,7 @@ public class GroupOfCards
     {
     }
     
-    public void setCards(ArrayList<Card> cards){
+    public void setCards(ArrayList<FrenchCard> cards){
         this.cards = cards;
     }
     
@@ -34,7 +34,7 @@ public class GroupOfCards
      * A method that will get the group of cards as an ArrayList
      * @return the group of cards.
      */
-    public ArrayList<Card> getCards()
+    public ArrayList<FrenchCard> getCards()
     {
         return cards;
     }
@@ -60,7 +60,7 @@ public class GroupOfCards
     }
     
     // add card to arraylist cards
-    public void addCard(Card card){
+    public void addCard(FrenchCard card){
         cards.add(card);
     }
 }//end class
