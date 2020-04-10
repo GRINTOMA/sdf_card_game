@@ -18,14 +18,14 @@ public class GroupOfCards
 {
    
     //The group of cards, stored in an ArrayList
-    private ArrayList <FrenchCard> cards;
+    private ArrayList <Card> cards;
     
     // default constructor
     public GroupOfCards()
     {
     }
     
-    public void setCards(ArrayList<FrenchCard> cards){
+    public void setCards(ArrayList<Card> cards){
         this.cards = cards;
     }
     
@@ -33,7 +33,7 @@ public class GroupOfCards
      * A method that will get the group of cards as an ArrayList
      * @return the group of cards.
      */
-    public ArrayList<FrenchCard> getCards()
+    public ArrayList<Card> getCards()
     {
         return cards;
     }
@@ -53,13 +53,13 @@ public class GroupOfCards
             for (Suit s : Suit.values()){
                 // will add in duplicates of the card if necessary
                 for (int i = 0; i < numOfDecks; i++)
-                    cards.add(new FrenchCard(r, s));
+                    cards.add(new Card(r, s));
             }
         }
     }
     
     // add card to arraylist cards
-    public void addCard(FrenchCard card){
+    public void addCard(Card card){
         cards.add(card);
     }
 }//end class
