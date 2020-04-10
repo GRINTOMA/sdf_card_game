@@ -19,7 +19,6 @@ public class GroupOfCards
    
     //The group of cards, stored in an ArrayList
     private ArrayList <FrenchCard> cards;
-    private int size;//the size of the grouping
     
     // default constructor
     public GroupOfCards()
