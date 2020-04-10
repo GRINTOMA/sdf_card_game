@@ -11,9 +11,8 @@ package ca.sheridancollege.project;
  * should remember to add themselves as a modifier.
  * @author dancye
  */
-public abstract class Card 
+public class Card 
 {
-    
     private Rank rank;
     private Suit suit;
     
@@ -51,7 +50,8 @@ public abstract class Card
     }
     
     @Override
-    public abstract String toString(
-            
-    );
+    // returns short form of each card
+    public String toString(){
+        return this.getRank().getShortName()+this.getSuit().getSymbol();
+    }
 }
