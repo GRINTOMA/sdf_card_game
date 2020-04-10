@@ -11,47 +11,15 @@ package ca.sheridancollege.project;
  * should remember to add themselves as a modifier.
  * @author dancye
  */
-public class Card 
+public abstract class Card 
 {
-    private Rank rank;
-    private Suit suit;
+    //default modifier for child classes
     
-    public Card(Rank rank, Suit suit){
-        setRank(rank);
-        setSuit(suit);
-    }
-
     /**
-     * @return the rank
+     * Students should implement this method for their specific children classes 
+     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
      */
-    public Rank getRank() {
-        return rank;
-    }
-
-    /**
-     * @param rank the rank to set
-     */
-    public void setRank(Rank rank) {
-        this.rank = rank;
-    }
-
-    /**
-     * @return the suit
-     */
-    public Suit getSuit() {
-        return suit;
-    }
-
-    /**
-     * @param suit the suit to set
-     */
-    public void setSuit(Suit suit) {
-        this.suit = suit;
-    }
     
     @Override
-    // returns short form of each card
-    public String toString(){
-        return this.getRank().getShortName()+this.getSuit().getSymbol();
-    }
+    public abstract String toString();
 }
