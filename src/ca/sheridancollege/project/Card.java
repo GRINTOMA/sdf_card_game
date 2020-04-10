@@ -50,4 +50,14 @@ public class Card {
     public String toString(){
         return this.getRank().getShortName()+this.getSuit().getSymbol();
     }
+    
+    // check if cards are equal by checking if they
+    // have the same rank and suit
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Card)
+            return (((Card)o).getRank() == this.getRank()
+                    && ((Card)o).getSuit() == this.getSuit());
+        return false;
+    }
 }
