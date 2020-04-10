@@ -13,14 +13,45 @@ package ca.sheridancollege.project;
  */
 public abstract class Card 
 {
-    //default modifier for child classes
     
+    private Rank rank;
+    private Suit suit;
+    
+    public Card(Rank rank, Suit suit){
+        setRank(rank);
+        setSuit(suit);
+    }
+
     /**
-     * Students should implement this method for their specific children classes 
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
+     * @return the rank
      */
+    public Rank getRank() {
+        return rank;
+    }
+
+    /**
+     * @param rank the rank to set
+     */
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    /**
+     * @return the suit
+     */
+    public Suit getSuit() {
+        return suit;
+    }
+
+    /**
+     * @param suit the suit to set
+     */
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
     
     @Override
-    public abstract String toString();
-    
+    public abstract String toString(
+            
+    );
 }
