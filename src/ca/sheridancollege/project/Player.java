@@ -12,11 +12,13 @@ public class Player
 {
     private String playerID; //the unique ID for this player
     private GroupOfCards hand; // represents the player's hand
+    private CrazyEights game; // represents the game the players are in
 
-    public Player(String name, GroupOfCards hand)
+    public Player(String name, GroupOfCards hand, CrazyEights game)
     {
         setPlayerID(name);
         setHand(hand);
+        setGame(game);
     }
     
     /**
@@ -50,9 +52,23 @@ public class Player
         this.hand = hand;
     }
     
+        /**
+     * @return the game
+     */
+    public CrazyEights getGame() {
+        return game;
+    }
+
+    /**
+     * @param game the game to set
+     */
+    public void setGame(CrazyEights game) {
+        this.game = game;
+    }
+    
     // add card to hand
-    public void addCard(Card card){
-        getHand().addCard(card);
+    private void draw(Card card){
+        getHand().addCard(getGame().drawFromDeck());
     }
     
     // checks hand for card and removes it
