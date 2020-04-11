@@ -32,7 +32,7 @@ public enum Rank {
     }
 
     // get suit based on string
-    public static Rank getSuitFromLetter(String letter){
+    public static Rank getRankFromLetter(String letter){
         for (Rank r : values()){
             if (r.name.equals(letter)) return r;
         }
