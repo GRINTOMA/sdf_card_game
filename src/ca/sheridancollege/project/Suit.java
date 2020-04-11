@@ -18,6 +18,14 @@ public enum Suit {
         this.name = name;
         this.symbol = symbol;
     }
+    
+    // get suit based on string
+    public static Suit getSuitFromLetter(String letter){
+        for (Suit s : values()){
+            if (s.name.equals(letter)) return s;
+        }
+        return null;
+    }
 
     // gets the value of each suit
     public int getValue() {

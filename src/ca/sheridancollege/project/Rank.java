@@ -31,6 +31,14 @@ public enum Rank {
         this.shortName = shortName;
     }
 
+    // get suit based on string
+    public static Rank getSuitFromLetter(String letter){
+        for (Rank r : values()){
+            if (r.name.equals(letter)) return r;
+        }
+        return null;
+    }
+    
     // returns value of the card
     public int getValue() {
         return value;
