@@ -67,16 +67,11 @@ public class Player
     }
     
     // add card to hand
-    private void draw(Card card){
-        getHand().addCard(getGame().drawFromDeck());
+    public void addCard(Card card){
+        getHand().addCard(card);
     }
     
-    // checks hand for card and removes it
-    // returns true if it is in the hand
-    public boolean playCard(Card card){
-        return hand.getCards().remove(card);
-    }
-    
+    // returns their ID for toString
     @Override
     public String toString(){
         return this.getPlayerID();
