@@ -28,10 +28,18 @@ public class CrazyEights
     public CrazyEights(String givenName)
     {
         gameName = givenName;
+        players = new ArrayList<>();
+        
         getNumPlayers();
         generateDeck();
-        generatePlayers();
+        getDeck().shuffle();
+        
+        setPlayers();
         setTurn(0);
+        setPile(new GroupOfCards());
+        // remove top card of deck to set as top card of pile
+        getPile().addCard(getDeck().getCards().remove(0));
+        // set suit according to this card
         setSuit(this.getTopCardPile().getSuit());
     }
 
@@ -55,17 +63,15 @@ public class CrazyEights
         return players;
     }
 
-    /**
-     * @param players the players of this game
-     */
-    public void setPlayers(ArrayList <Player> players) 
+    // generates the players for the game
+    public void setPlayers() 
     {
-        ArrayList <Player> listPlayers = new ArrayList<>();
+        int cardsInHand = (numPlayers == 2) ? 7 : 5; 
         System.out.println("We will now be getting the IDs for each player.");
         for (int i = 0; i < numPlayers; i++){
             System.out.println("What will player" + (i+1) + "'s ID be?");
             String playerID = input.nextLine();
-            listPlayers.add(new Player(playerID, generateHand(), this));
+            getPlayers().add(new Player(playerID, this, cardsInHand));
         }
     }
 
@@ -163,8 +169,7 @@ public class CrazyEights
                 }
 
                 if (choice.toLowerCase().matches("draw"))
-                    currentPlayer.addCard(drawFromDeck());
-                
+                    currentPlayer.drawCard();
                 
                 // once the user makes a valid card choice
                 if (!choice.toLowerCase().matches("draw")){
@@ -250,50 +255,23 @@ public class CrazyEights
     // generate 52 card deck for 2-4 players
     // generate 104 card deck for 5-7 players
     private void generateDeck(){
-        if (numPlayers <5){
+        if (numPlayers < 5){
             setDeck(new GroupOfCards(1));
         } else {
             setDeck(new GroupOfCards(2));
         }
     }
     
-    // generates the players for the game
-    private void generatePlayers(){
-        System.out.println("We will now be getting the IDs for each player.");
-        for (int i = 0; i < numPlayers; i++){
-            System.out.println("What will player 1's ID be?");
-            String playerID = input.nextLine();
-        }
-    }
-    
-    // generates a GroupOfCards object to be set to a player's hand
-    // 7 cards for 2 player game, otherwise 5 per player
-    private GroupOfCards generateHand(){
-        GroupOfCards hand = new GroupOfCards();
-        if (numPlayers == 2){
-            for (int i = 0; i < 7; i++) hand.addCard(drawFromDeck());
-        } else {
-            for (int i = 0; i < 5; i++) hand.addCard(drawFromDeck());
-        }
-        
-        return hand;
-    }
-    
-    // remove and returns top card from deck
-    public Card drawFromDeck(){
-        if (getDeck().size() == 0) shuffle();
-        return getDeck().getCards().remove(0);
-    }
-    
     // Generates the instructions prior to grabbing the player's input
     public void playCard(Player currentPlayer){
         System.out.println(
                     "\nPlay a card using the rank followed by the suit"
-                    + "(eg 2H for 2\u2661). If you cannot make a valid play,"
-                    + "type Draw to draw a card."
+                    + "(eg 2H for 2\u2661)."
+                    + "\nIf you cannot make a valid play or wish to draw a card"
+                    + ", type draw to draw a card."
                     + "\nH = \u2661, S = \u2660, D = \u2662, C = \u2663"
-                    + getRankSuitOfPile()
-                    + "Your hand is:\n"
+                    + "\n" + getRankSuitOfPile()
+                    + "\nYour hand is:\n"
                     + currentPlayer.getHand().getCards()
                     + "What card would you like to play?");
     }
@@ -304,7 +282,7 @@ public class CrazyEights
         return  "The current suit of the pile is:"
                                 + getSuit().getName()
                 +  "\nThe current rank of the pile is:" +
-                                pile.getCards().get(0).getSuit().getName();
+                                pile.getCards().get(0).getRank().getName();
     }
     
     public Card getTopCardPile(){

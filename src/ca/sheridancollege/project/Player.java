@@ -14,11 +14,15 @@ public class Player
     private GroupOfCards hand; // represents the player's hand
     private CrazyEights game; // represents the game the players are in
 
-    public Player(String name, GroupOfCards hand, CrazyEights game)
+    public Player(String name, CrazyEights game, int startingHand)
     {
         setPlayerID(name);
-        setHand(hand);
         setGame(game);
+        hand = new GroupOfCards();
+        
+        for (int i = 0; i < startingHand; i++){
+            this.drawCard();
+        }
     }
     
     /**
@@ -66,9 +70,12 @@ public class Player
         this.game = game;
     }
     
-    // add card to hand
-    public void addCard(Card card){
-        getHand().addCard(card);
+    // Draws a card.
+    // Will shuffle pile into deck if empty.
+    public void drawCard(){
+    // remove and returns top card from deck
+        if (getGame().getDeck().size() == 0) getGame().shuffle();
+        hand.addCard(getGame().getDeck().getCards().remove(0));
     }
     
     // returns their ID for toString
