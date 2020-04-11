@@ -4,17 +4,19 @@ package ca.sheridancollege.project;
  * Represents the Suits for the Card class.
  */
 public enum Suit {
-    CLUBS(1, "C", '\u2663'),
-    DIAMONDS(2, "D", '\u2662'),
-    HEARTS(3, "H", '\u2661'),
-    SPADES(4, "S", '\u2660');
+    CLUBS(1, "C", "Clubs" ,'\u2663'),
+    DIAMONDS(2, "D", "Diamonds", '\u2662'),
+    HEARTS(3, "H", "Hearts", '\u2661'),
+    SPADES(4, "S", "Spades", '\u2660');
     
     private int value;
+    private String shortName;
     private String name;
     private char symbol;
     
-    private Suit(int value, String name, char symbol){
+    private Suit(int value, String shortName, String name, char symbol){
         this.value = value;
+        this.shortName = shortName;
         this.name = name;
         this.symbol = symbol;
     }
@@ -22,7 +24,7 @@ public enum Suit {
     // get suit based on string
     public static Suit getSuitFromLetter(String letter){
         for (Suit s : values()){
-            if (s.name.equals(letter.toUpperCase())) return s;
+            if (s.shortName.equals(letter.toUpperCase())) return s;
         }
         return null;
     }
@@ -30,6 +32,10 @@ public enum Suit {
     // gets the value of each suit
     public int getValue() {
         return value;
+    }
+    
+    public String getShortName(){
+        return shortName;
     }
 
     // returns the name of each suit
