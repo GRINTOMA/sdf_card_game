@@ -31,6 +31,8 @@ public class CrazyEights
         getNumPlayers();
         generateDeck();
         generatePlayers();
+        setTurn(0);
+        setSuit(this.getTopCardPile().getSuit());
     }
 
     /**
@@ -185,10 +187,32 @@ public class CrazyEights
                         currentPlayer.getHand().getCards()
                                 .remove(generatedCard);
                         getPile().addCard(generatedCard);
-                        break;
-                    }
-                }
-            }
+                        
+                        // sets pile suit according to new card
+                        // or player's decision
+                        if (generatedCard.getRank() == Rank.EIGHT){
+                            while (true){
+                                System.out.println("You've played an eight!"
+                                        + "What suit would you like the pile"
+                                        + " to be?");
+                                        choice = input.nextLine();
+                                
+                                // tell user they've made an invalid choice
+                                // and prompt again, otherwise break loop
+                                if (!PlayValidator.validateSuit(choice)){
+                                    System.out.println("You've entered"
+                                            + " an invalid suit.  Try again,");
+                                } else {
+                                    break;
+                                }
+                            } // suit prompt loop (played 8)
+                        } else {
+                            setSuit(generatedCard.getSuit());
+                        }
+                        break; 
+                    } // valid play
+                } // valid card input 
+            } // card input loop
             
             // ends the game when winner is found
             if (declareWinner(players.get(turn))) break;
