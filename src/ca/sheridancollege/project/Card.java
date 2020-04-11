@@ -65,4 +65,12 @@ public class Card {
                     && ((Card)o).getSuit() == this.getSuit());
         return false;
     }
+    
+    @Override
+    public int hashCode(){
+        int result = 53;
+        result = 53 * result + getRank().hashCode();
+        result = 53 * result + getSuit().hashCode();
+        return result;
+    }
 }
