@@ -22,12 +22,6 @@ public class GroupOfCards
         setCards(new ArrayList<>());
     }
     
-    // constructor for generating decks
-    public GroupOfCards(int i){
-        setCards(new ArrayList<>());
-        generateDeck(i);
-    }
-    
     public void setCards(ArrayList<Card> cards){
         this.cards = cards;
     }
@@ -50,20 +44,6 @@ public class GroupOfCards
     public void shuffle()
     {
         Collections.shuffle(cards);
-    }
-    
-    // generates the deck of cards
-    // numOfDecks is determined by the number of players
-    // where passing a certain thresholds will
-    // involve multiple decks in the game
-    public void generateDeck(int numOfDecks){
-        for (Rank r : Rank.values()){
-            for (Suit s : Suit.values()){
-                // will add in duplicates of the card if necessary
-                for (int i = 0; i < numOfDecks; i++)
-                    getCards().add(new Card(r, s));
-            }
-        }
     }
     
     // add card to arraylist cards

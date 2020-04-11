@@ -261,10 +261,16 @@ public class CrazyEights
     // generate 52 card deck for 2-4 players
     // generate 104 card deck for 5-7 players
     private void generateDeck(){
-        if (numPlayers < 5){
-            setDeck(new GroupOfCards(1));
-        } else {
-            setDeck(new GroupOfCards(2));
+        int numOfDecks = (numPlayers < 5) ? 1 : 2;
+        setDeck(new GroupOfCards());
+        
+        // generates cards to add in deck
+        for (Rank r : Rank.values()){
+            for (Suit s : Suit.values()){
+                // will add in duplicates of the card if necessary
+                for (int i = 0; i < numOfDecks; i++)
+                    getDeck().getCards().add(new Card(r, s));
+            }
         }
     }
     
