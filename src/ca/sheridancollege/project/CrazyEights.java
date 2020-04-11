@@ -18,6 +18,8 @@ public class CrazyEights
     private ArrayList <Player> players;// the players of the game
     private GroupOfCards deck; // deck players draw from
     private GroupOfCards pile; // the pile cards are played in
+    private Suit suit; // represents the suit that must be adhered to
+    private int turn; // represents the current player's turn
     
     private int numPlayers;
     Scanner input = new Scanner(System.in);
@@ -65,6 +67,32 @@ public class CrazyEights
         }
     }
 
+     /**
+     * @return the deck's suit
+     */
+    public Suit getSuit() {
+        return this.suit;
+    }
+
+    // set the suit that must be adhered to
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
+
+    /**
+     * @return the turn
+     */
+    public int getTurn() {
+        return turn;
+    }
+
+    /**
+     * @param turn the turn to set
+     */
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+    
         /**
      * @return the deck
      */
