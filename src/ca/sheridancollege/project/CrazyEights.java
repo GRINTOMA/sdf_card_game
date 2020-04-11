@@ -37,10 +37,12 @@ public class CrazyEights
         setPlayers();
         setTurn(0);
         setPile(new GroupOfCards());
+        
         // remove top card of deck to set as top card of pile
-        getPile().addCard(getDeck().getCards().remove(0));
+        Card topCard = getDeck().getCards().remove(0);
+        getPile().addCard(topCard);
         // set suit according to this card
-        setSuit(this.getTopCardPile().getSuit());
+        setSuit(topCard.getSuit());
     }
 
     /**
@@ -151,31 +153,29 @@ public class CrazyEights
         
         while (true){
             currentPlayer = players.get(turn);
-            System.out.println("It is currently " + currentPlayer + "'s turn.");
             
             // force the user into a loop until a valid play is made
             while (true){
+                System.out.println("~~It is currently " +
+                        currentPlayer + "'s turn.~~");
                 playCard(currentPlayer); // generates the instructions
                 choice = input.nextLine();
                 
                 // checks to make sure user isn't drawing
                 // prior to prompting for invalid play
-                while (!PlayValidator.validateCard(choice)
-                        && !choice.trim().toLowerCase().matches("draw")){
-                    
-                    System.out.println( "That is an invalid card,"
-                            + "please try again. \nThe suit and rank of the"
-                            + "pile must match");
-                }
-
                 if (choice.toLowerCase().matches("draw"))
                     currentPlayer.drawCard();
                 
-                // once the user makes a valid card choice
-                if (!choice.toLowerCase().matches("draw")){
-                    generatedCard =
-                            new Card(choice.substring(0, 1),
-                                     choice.substring(1, 2));
+                // if user makes a valid card choice
+                else if (PlayValidator.validateCard(choice)){
+                    // doing quick check if value is 10
+                    String rank = (choice.substring(0,2).equals("10")) ?
+                            "10" : choice.substring(0,1);
+                    
+                    // generate card with given parameters
+                    generatedCard = new Card(rank,
+                                     choice.substring(choice.length()-1,
+                                             choice.length()));
                     
                     // check if its in their hand
                     if (PlayValidator.inHand(
@@ -192,14 +192,13 @@ public class CrazyEights
                         currentPlayer.getHand().getCards()
                                 .remove(generatedCard);
                         getPile().addCard(generatedCard);
-                        
-                        // sets pile suit according to new card
-                        // or player's decision
                         if (generatedCard.getRank() == Rank.EIGHT){
                             while (true){
-                                System.out.println("You've played an eight!"
+                                System.out.println("You've played an eight! "
                                         + "What suit would you like the pile"
-                                        + " to be?");
+                                        + " to be?"
+                                        + "\nH = \u2661, S = \u2660,"
+                                        + "D = \u2662, C = \u2663");
                                         choice = input.nextLine();
                                 
                                 // tell user they've made an invalid choice
@@ -208,15 +207,22 @@ public class CrazyEights
                                     System.out.println("You've entered"
                                             + " an invalid suit.  Try again,");
                                 } else {
+                                    setSuit(Suit.getSuitFromLetter(choice));
                                     break;
                                 }
                             } // suit prompt loop (played 8)
                         } else {
                             setSuit(generatedCard.getSuit());
                         }
-                        break; 
-                    } // valid play
-                } // valid card input 
+                        break;
+                    }
+                }
+                
+                // if it reaches here, the user has an invalid input or play
+                System.out.println("\n\nOops! The card you mentioned"
+                        + " isn't in your hand or a valid play."
+                        + "\nThe rank or suit must match the pile,"
+                        + " or must be an eight.");
             } // card input loop
             
             // ends the game when winner is found
@@ -265,27 +271,28 @@ public class CrazyEights
     // Generates the instructions prior to grabbing the player's input
     public void playCard(Player currentPlayer){
         System.out.println(
-                    "\nPlay a card using the rank followed by the suit"
+                    "\nPlay a card using the rank followed by the suit "
                     + "(eg 2H for 2\u2661)."
                     + "\nIf you cannot make a valid play or wish to draw a card"
-                    + ", type draw to draw a card."
+                    + ", type draw."
                     + "\nH = \u2661, S = \u2660, D = \u2662, C = \u2663"
                     + "\n" + getRankSuitOfPile()
                     + "\nYour hand is:\n"
                     + currentPlayer.getHand().getCards()
-                    + "What card would you like to play?");
+                    + "\nWhat card would you like to play?");
     }
     
     // gives back the string regarding the suit and rank
     // relative to the current state of the game
     public String getRankSuitOfPile(){
-        return  "The current suit of the pile is:"
-                                + getSuit().getName()
-                +  "\nThe current rank of the pile is:" +
-                                pile.getCards().get(0).getRank().getName();
+        return  "The current suit of the pile is: "
+                    + getSuit().getName() + " - " + getSuit().getSymbol()
+                +  "\nThe current rank of the pile is: " +
+                                getTopCardPile().getRank().getName()
+                + " - " + getTopCardPile().getRank().getShortName();
     }
     
     public Card getTopCardPile(){
-        return getPile().getCards().get(0);
+        return getPile().getCards().get(getPile().getCards().size()-1);
     }
 }//end class
