@@ -16,6 +16,11 @@ public class Card {
         setRank(rank);
         setSuit(suit);
     }
+    
+    public Card (String rank, String suit){
+        setRank(Rank.getRankFromLetter(rank));
+        setSuit(Suit.getSuitFromLetter(suit));
+    }
 
     /**
      * @return the rank
