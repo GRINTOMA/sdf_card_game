@@ -76,4 +76,9 @@ public class Player
     public boolean playCard(Card card){
         return hand.getCards().remove(card);
     }
+    
+    @Override
+    public String toString(){
+        return this.getPlayerID();
+    }
 }
