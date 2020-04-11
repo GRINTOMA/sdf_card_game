@@ -22,7 +22,7 @@ public enum Suit {
     // get suit based on string
     public static Suit getSuitFromLetter(String letter){
         for (Suit s : values()){
-            if (s.name.equals(letter)) return s;
+            if (s.name.equals(letter.toUpperCase())) return s;
         }
         return null;
     }

@@ -34,7 +34,7 @@ public enum Rank {
     // get suit based on string
     public static Rank getRankFromLetter(String letter){
         for (Rank r : values()){
-            if (r.name.equals(letter)) return r;
+            if (r.shortName.equals(letter.toUpperCase())) return r;
         }
         return null;
     }
