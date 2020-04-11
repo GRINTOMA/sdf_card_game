@@ -7,6 +7,11 @@ package ca.sheridancollege.project;
 
 public class PlayValidator {
     
+    // check if user input a valid suit
+    public static boolean validateSuit(String suit){
+        return suit.matches("[schdSCHD]");
+    }
+    
     // checks to see if the user input a valid card
     public static boolean validateCard(String card){
         return card.matches("([ajqkAJQK]|[2-9]|10)[schdSCHD]");
