@@ -61,7 +61,7 @@ public class CrazyEights
         ArrayList <Player> listPlayers = new ArrayList<>();
         System.out.println("We will now be getting the IDs for each player.");
         for (int i = 0; i < numPlayers; i++){
-            System.out.println("What will player 1's ID be?");
+            System.out.println("What will player" + (i+1) + "'s ID be?");
             String playerID = input.nextLine();
             listPlayers.add(new Player(playerID, generateHand(), this));
         }
@@ -136,21 +136,77 @@ public class CrazyEights
     }
     
     // main game loop
-    public void play(
+    public void play(){
+        Player currentPlayer;
+        String choice;
+        Card generatedCard;
         
-    ){};
-    /**
-     * Play the game. This might be one method or many method calls depending
-     * on your game.
-     */
-    //public abstract void play();
-    
-    /**
-     * When the game is over, use this method to declare and display a winning
-     * player.
-     */
-    //public abstract void declareWinner();
+        while (true){
+            currentPlayer = players.get(turn);
+            System.out.println("It is currently " + currentPlayer + "'s turn.");
+            
+            // force the user into a loop until a valid play is made
+            while (true){
+                playCard(currentPlayer); // generates the instructions
+                choice = input.nextLine();
+                
+                // checks to make sure user isn't drawing
+                // prior to prompting for invalid play
+                while (!PlayValidator.validateCard(choice)
+                        && !choice.trim().toLowerCase().matches("draw")){
+                    
+                    System.out.println( "That is an invalid card,"
+                            + "please try again. \nThe suit and rank of the"
+                            + "pile must match");
+                }
 
+                if (choice.toLowerCase().matches("draw"))
+                    currentPlayer.addCard(drawFromDeck());
+                
+                
+                // once the user makes a valid card choice
+                if (!choice.toLowerCase().matches("draw")){
+                    generatedCard =
+                            new Card(choice.substring(0, 1),
+                                     choice.substring(1, 2));
+                    
+                    // check if its in their hand
+                    if (PlayValidator.inHand(
+                            currentPlayer.getHand(),
+                            generatedCard)
+                            // and is a valid play
+                        && PlayValidator.validatePlay(
+                                getTopCardPile().getRank(),
+                                getSuit(),
+                                generatedCard))
+                    {    
+                        // if so, remove it from their hand
+                        // and add it to the pile
+                        currentPlayer.getHand().getCards()
+                                .remove(generatedCard);
+                        getPile().addCard(generatedCard);
+                        break;
+                    }
+                }
+            }
+            
+            // ends the game when winner is found
+            if (declareWinner(players.get(turn))) break;
+            
+            // go to the next player
+            turn++;
+            if (turn == players.size()) turn = 0;
+        }
+    }
+    
+    public boolean declareWinner(Player player){
+        if (player.getHand().size() == 0){
+            System.out.println("Congratulations, " + player.getPlayerID() 
+            + " has won the game!");
+            return true;
+        }
+        return false;
+    }
    
     // setup to get the players and their IDs
     private void getNumPlayers(){
@@ -203,5 +259,31 @@ public class CrazyEights
     public Card drawFromDeck(){
         if (getDeck().size() == 0) shuffle();
         return getDeck().getCards().remove(0);
+    }
+    
+    // Generates the instructions prior to grabbing the player's input
+    public void playCard(Player currentPlayer){
+        System.out.println(
+                    "\nPlay a card using the rank followed by the suit"
+                    + "(eg 2H for 2\u2661). If you cannot make a valid play,"
+                    + "type Draw to draw a card."
+                    + "\nH = \u2661, S = \u2660, D = \u2662, C = \u2663"
+                    + getRankSuitOfPile()
+                    + "Your hand is:\n"
+                    + currentPlayer.getHand().getCards()
+                    + "What card would you like to play?");
+    }
+    
+    // gives back the string regarding the suit and rank
+    // relative to the current state of the game
+    public String getRankSuitOfPile(){
+        return  "The current suit of the pile is:"
+                                + getSuit().getName()
+                +  "\nThe current rank of the pile is:" +
+                                pile.getCards().get(0).getSuit().getName();
+    }
+    
+    public Card getTopCardPile(){
+        return getPile().getCards().get(0);
     }
 }//end class
