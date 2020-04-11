@@ -19,9 +19,11 @@ public class PlayValidator {
     }
     
     // A valid play is one where either the played card matches
-    // the suit of the top card or is an eight.
-    public static boolean validatePlay(Card topCard, Card playCard){
-        return (topCard.getSuit() == playCard.getSuit() ||
+    // the top card of the pile's rank, the current
+    // suit of the pile or is an eight.
+    public static boolean validatePlay(Rank rank, Suit suit, Card playCard){
+        return (suit == playCard.getSuit() ||
+                rank == playCard.getRank() ||
                 playCard.getRank() == Rank.EIGHT);
     }
 }
