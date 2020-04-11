@@ -19,10 +19,12 @@ public class GroupOfCards
     // default constructor
     public GroupOfCards()
     {
+        setCards(new ArrayList<>());
     }
     
     // constructor for generating decks
     public GroupOfCards(int i){
+        setCards(new ArrayList<>());
         generateDeck(i);
     }
     
@@ -37,6 +39,11 @@ public class GroupOfCards
     public ArrayList<Card> getCards()
     {
         return cards;
+    }
+    
+    // returns number of cards in this group
+    public int size(){
+        return getCards().size();
     }
     
     // for shuffling the deck of cards
@@ -54,7 +61,7 @@ public class GroupOfCards
             for (Suit s : Suit.values()){
                 // will add in duplicates of the card if necessary
                 for (int i = 0; i < numOfDecks; i++)
-                    cards.add(new Card(r, s));
+                    getCards().add(new Card(r, s));
             }
         }
     }
@@ -62,5 +69,10 @@ public class GroupOfCards
     // add card to arraylist cards
     public void addCard(Card card){
         cards.add(card);
+    }
+    
+    // adds pile to deck and suffle
+    public void addPile(GroupOfCards pile){
+        getCards().addAll(pile.getCards());
     }
 }//end class
