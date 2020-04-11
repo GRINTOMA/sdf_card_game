@@ -93,6 +93,20 @@ public class CrazyEights
         this.pile = pile;
     }
     
+    // shuffles the two decks together
+    public void shuffle(){
+        // take the top card
+        Card tempHolder = getPile().getCards().remove(0);
+        // adds the remainder of the pile to the deck
+        getDeck().addPile(getPile());
+        // shuffle the deck
+        getDeck().shuffle();
+        // clear the pile
+        getPile().getCards().clear();
+        // add top card back into the pile
+        getPile().addCard(tempHolder);
+    }
+    
     // main game loop
     public void play(
         
@@ -159,6 +173,7 @@ public class CrazyEights
     
     // remove and returns top card from deck
     public Card drawFromDeck(){
+        if (getDeck().size() == 0) shuffle();
         return getDeck().getCards().remove(0);
     }
 }//end class
