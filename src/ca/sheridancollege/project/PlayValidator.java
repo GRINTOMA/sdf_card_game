@@ -9,7 +9,7 @@ public class PlayValidator {
     
     // checks to see if the user input a valid card
     public static boolean validateCard(String card){
-        return card.matches("[schdSCHD]([ajqkAJQK]|[1-9]|10)");
+        return card.matches("([ajqkAJQK]|[2-9]|10)[schdSCHD]");
     }
     
     // checks to see if user hand contains the card
