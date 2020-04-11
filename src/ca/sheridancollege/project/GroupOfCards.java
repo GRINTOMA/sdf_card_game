@@ -21,6 +21,11 @@ public class GroupOfCards
     {
     }
     
+    // constructor for generating decks
+    public GroupOfCards(int i){
+        generateDeck(i);
+    }
+    
     public void setCards(ArrayList<Card> cards){
         this.cards = cards;
     }
