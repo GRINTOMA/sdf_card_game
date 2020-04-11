@@ -55,8 +55,9 @@ public class Player
         getHand().addCard(card);
     }
     
-    //
-    public void playCard(Card card){
-        
+    // checks hand for card and removes it
+    // returns true if it is in the hand
+    public boolean playCard(Card card){
+        return hand.getCards().remove(card);
     }
 }
