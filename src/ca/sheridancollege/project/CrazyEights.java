@@ -132,7 +132,7 @@ public class CrazyEights
     }
     
     // shuffles the two decks together
-    public void shuffle(){
+    public void shufflePileIntoDeck(){
         // take the top card
         Card tempHolder = getPile().getCards().remove(0);
         // adds the remainder of the pile to the deck

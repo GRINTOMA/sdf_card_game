@@ -74,7 +74,7 @@ public class Player
     // Will shuffle pile into deck if empty.
     public void drawCard(){
     // remove and returns top card from deck
-        if (getGame().getDeck().size() == 0) getGame().shuffle();
+        if (getGame().getDeck().size() == 0) getGame().shufflePileIntoDeck();
         hand.addCard(getGame().getDeck().getCards().remove(0));
     }
     
