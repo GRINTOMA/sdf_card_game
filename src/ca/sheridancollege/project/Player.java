@@ -14,6 +14,7 @@ public class Player
     private GroupOfCards hand; // represents the player's hand
     private CrazyEights game; // represents the game the players are in
 
+    // default constructor
     public Player(String name, CrazyEights game, int startingHand)
     {
         setPlayerID(name);
@@ -23,6 +24,11 @@ public class Player
         for (int i = 0; i < startingHand; i++){
             this.drawCard();
         }
+    }
+    
+    // constructor for testing purposes
+    public Player(String name){
+        setPlayerID(name);
     }
     
     /**
@@ -75,7 +81,11 @@ public class Player
     public void drawCard(){
     // remove and returns top card from deck
         if (getGame().getDeck().size() == 0) getGame().shufflePileIntoDeck();
-        hand.addCard(getGame().getDeck().getCards().remove(0));
+        if (getGame().getDeck().size() > 0)
+            hand.addCard(getGame().getDeck().getCards().remove(0));
+        else if (getGame().getDeck().size()
+                == 0 && getGame().getPile().size() == 1)
+            System.out.println("Can't draw any more cards!");
     }
     
     // returns their ID for toString
