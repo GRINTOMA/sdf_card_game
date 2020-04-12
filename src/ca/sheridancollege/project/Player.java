@@ -29,6 +29,7 @@ public class Player
     // constructor for testing purposes
     public Player(String name){
         setPlayerID(name);
+        hand = new GroupOfCards();
     }
     
     /**

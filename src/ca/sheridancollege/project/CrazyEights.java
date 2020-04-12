@@ -23,6 +23,10 @@ public class CrazyEights
     
     private int numPlayers;
     Scanner input = new Scanner(System.in);
+
+    public CrazyEights(){
+        
+    }
     
     // constructor
     public CrazyEights(String givenName)
@@ -272,7 +276,7 @@ public class CrazyEights
     
     // generate 52 card deck for 2-4 players
     // generate 104 card deck for 5-7 players
-    private void generateDeck(){
+    public void generateDeck(){
         int numOfDecks = (numPlayers < 5) ? 1 : 2;
         setDeck(new GroupOfCards());
         
