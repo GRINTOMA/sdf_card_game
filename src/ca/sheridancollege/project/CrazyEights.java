@@ -45,6 +45,14 @@ public class CrazyEights
         setSuit(topCard.getSuit());
     }
 
+    // constructor for manual testing purposes
+    public CrazyEights(ArrayList<Player> players){
+        setPlayers(players);
+        generateDeck();
+        setTurn(0);
+        setPile(new GroupOfCards());
+    }
+    
     /**
      * @return the gameName
      */
@@ -75,6 +83,10 @@ public class CrazyEights
             String playerID = input.nextLine();
             getPlayers().add(new Player(playerID, this, cardsInHand));
         }
+    }
+    
+    public void setPlayers(ArrayList<Player> players){
+        this.players = players;
     }
 
      /**
