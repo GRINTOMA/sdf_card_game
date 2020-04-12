@@ -7,6 +7,12 @@ import java.util.Scanner;
  * The model of the game.  It will handle all operations related
  * to communications in the game, and generating the base deck
  * required for play.
+ *
+ * 
+ * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
+ * Class: SYST17796 Fundamentals of Software Design and Development
+ * Instructor: Ali Hassan
+ * Group: 13
  */
 
 public class CrazyEights
