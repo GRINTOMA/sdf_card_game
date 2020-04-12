@@ -239,6 +239,10 @@ public class CrazyEights
                             + "\nThe rank or suit must match the pile,"
                             + " or must be an eight.");
                 }
+                
+                // special case where one player decides
+                // to draw out the entire deck, force turn to incremenet
+                if (getDeck().size() == 0 && getPile().size() == 1) break;
             } // card input loop
             
             // ends the game when winner is found
