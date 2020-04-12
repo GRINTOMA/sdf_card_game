@@ -228,13 +228,13 @@ public class CrazyEights
                         }
                         break;
                     }
+                } else {         
+                    // if it reaches here, the user has an invalid input or play
+                    System.out.println("\n\nOops! The card you mentioned"
+                            + " isn't in your hand or a valid play."
+                            + "\nThe rank or suit must match the pile,"
+                            + " or must be an eight.");
                 }
-                
-                // if it reaches here, the user has an invalid input or play
-                System.out.println("\n\nOops! The card you mentioned"
-                        + " isn't in your hand or a valid play."
-                        + "\nThe rank or suit must match the pile,"
-                        + " or must be an eight.");
             } // card input loop
             
             // ends the game when winner is found
