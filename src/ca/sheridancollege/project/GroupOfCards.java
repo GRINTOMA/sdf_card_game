@@ -1,57 +1,58 @@
-/**
- * SYST 17796 Project Winter 2020 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * A concrete class that represents any grouping of cards for a Game.
- * HINT, you might want to subclass this more than once.
- * The group of cards has a maximum size attribute which is flexible for reuse.
- * @author dancye
- */
+/*
+* GroupOfCards is designed to represent both the player's hand
+* alongside the game's deck in which players will draw from.
+* It'll also represent the face-up pile in which cards will be
+* played.
+*/
+
 public class GroupOfCards 
 {
    
     //The group of cards, stored in an ArrayList
     private ArrayList <Card> cards;
-    private int size;//the size of the grouping
     
-    public GroupOfCards(int givenSize)
+    // default constructor
+    public GroupOfCards()
     {
-        size = givenSize;
+        setCards(new ArrayList<>());
+    }
+    
+    public void setCards(ArrayList<Card> cards){
+        this.cards = cards;
     }
     
     /**
      * A method that will get the group of cards as an ArrayList
      * @return the group of cards.
      */
-    public ArrayList<Card> showCards()
+    public ArrayList<Card> getCards()
     {
         return cards;
     }
     
+    // returns number of cards in this group
+    public int size(){
+        return getCards().size();
+    }
+    
+    // for shuffling the deck of cards
     public void shuffle()
     {
         Collections.shuffle(cards);
     }
-
-    /**
-     * @return the size of the group of cards
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * @param givenSize the max size for the group of cards
-     */
-    public void setSize(int givenSize) {
-        size = givenSize;
+    
+    // add card to arraylist cards
+    public void addCard(Card card){
+        cards.add(card);
     }
     
+    // adds pile to deck and suffle
+    public void addPile(GroupOfCards pile){
+        getCards().addAll(pile.getCards());
+    }
 }//end class

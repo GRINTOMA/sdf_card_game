@@ -1,25 +1,35 @@
-/**
- * SYST 17796 Project Winter 2020 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
 package ca.sheridancollege.project;
 
-/**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- * @author dancye
- */
-public abstract class Player 
+/*
+* Represents the Player in the crazy eight game.
+*
+* Handles operations related to the player and
+* how they interact with the board.  In this case, they
+* will be able draw and play cards.
+*/
+
+public class Player 
 {
     private String playerID; //the unique ID for this player
-    
-    /**
-     * A constructor that allows you to set the player's unique ID
-     * @param name the unique ID to assign to this player.
-     */
-    public Player(String name)
+    private GroupOfCards hand; // represents the player's hand
+    private CrazyEights game; // represents the game the players are in
+
+    // default constructor
+    public Player(String name, CrazyEights game, int startingHand)
     {
-        playerID= name;
+        setPlayerID(name);
+        setGame(game);
+        hand = new GroupOfCards();
+        
+        for (int i = 0; i < startingHand; i++){
+            this.drawCard();
+        }
+    }
+    
+    // constructor for testing purposes
+    public Player(String name){
+        setPlayerID(name);
+        hand = new GroupOfCards();
     }
     
     /**
@@ -38,11 +48,50 @@ public abstract class Player
     {
         playerID = givenID;
     }
-    
+
     /**
-     * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
+     * @return the hand
      */
-    public abstract void play();
+    public GroupOfCards getHand() {
+        return hand;
+    }
+
+    /**
+     * @param hand the hand to set
+     */
+    public void setHand(GroupOfCards hand) {
+        this.hand = hand;
+    }
     
+        /**
+     * @return the game
+     */
+    public CrazyEights getGame() {
+        return game;
+    }
+
+    /**
+     * @param game the game to set
+     */
+    public void setGame(CrazyEights game) {
+        this.game = game;
+    }
+    
+    // Draws a card.
+    // Will shuffle pile into deck if empty.
+    public void drawCard(){
+    // remove and returns top card from deck
+        if (getGame().getDeck().size() == 0) getGame().shufflePileIntoDeck();
+        if (getGame().getDeck().size() > 0)
+            hand.addCard(getGame().getDeck().getCards().remove(0));
+        else if (getGame().getDeck().size()
+                == 0 && getGame().getPile().size() == 1)
+            System.out.println("Can't draw any more cards!");
+    }
+    
+    // returns their ID for toString
+    @Override
+    public String toString(){
+        return this.getPlayerID();
+    }
 }

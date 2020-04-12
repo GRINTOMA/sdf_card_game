@@ -1,26 +1,76 @@
-/**
- * SYST 17796 Project Winter 2020 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
 package ca.sheridancollege.project;
 
 /**
- * A class to be used as the base Card class for the project. Must be general
- * enough to be instantiated for any Card game. Students wishing to add to the code 
- * should remember to add themselves as a modifier.
- * @author dancye
+ *
+ * Represents the standard card from a 52 card deck
+ * or alternatively known as a French card.
+ * 
+ * @author Richard
  */
-public abstract class Card 
-{
-    //default modifier for child classes
+public class Card {
+
+    private Rank rank;
+    private Suit suit;
     
+    public Card(Rank rank, Suit suit){
+        setRank(rank);
+        setSuit(suit);
+    }
+    
+    public Card (String rank, String suit){
+        setRank(Rank.getRankFromLetter(rank));
+        setSuit(Suit.getSuitFromLetter(suit));
+    }
+
     /**
-     * Students should implement this method for their specific children classes 
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
+     * @return the rank
      */
+    public Rank getRank() {
+        return rank;
+    }
+
+    /**
+     * @param rank the rank to set
+     */
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    /**
+     * @return the suit
+     */
+    public Suit getSuit() {
+        return suit;
+    }
+
+    /**
+     * @param suit the suit to set
+     */
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
     
     @Override
-    public abstract String toString();
+    // returns short form of each card
+    public String toString(){
+        return this.getRank().getShortName()+this.getSuit().getSymbol();
+    }
     
+    // check if cards are equal by checking if they
+    // have the same rank and suit
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Card)
+            return (((Card)o).getRank() == this.getRank()
+                    && ((Card)o).getSuit() == this.getSuit());
+        return false;
+    }
+    
+    @Override
+    public int hashCode(){
+        int result = 53;
+        result = 53 * result + getRank().hashCode();
+        result = 53 * result + getSuit().hashCode();
+        return result;
+    }
 }
