@@ -1,8 +1,3 @@
-/**
- * SYST 17796 Project Winter 2020 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
@@ -10,8 +5,10 @@ import java.util.Scanner;
 
 /**
  * The model of the game.  It will handle all operations related
- * 
+ * to communications in the game, and generating the base deck
+ * required for play.
  */
+
 public class CrazyEights
 {
     private String gameName;//the title of the game
