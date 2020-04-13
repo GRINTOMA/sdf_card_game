@@ -1,7 +1,15 @@
 package ca.sheridancollege.project;
 
 /**
+ * 
+ * Class: Suit
+ * Course: SYST17796 Fundamentals of Software Design and Development
+ * Instructor: Ali Hassan
+ * Group: 13
+ * 
  * Represents the Suits for the Card class.
+ * 
+ * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
  */
 public enum Suit {
     CLUBS(1, "C", "Clubs" ,'\u2663'),

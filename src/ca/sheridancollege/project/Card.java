@@ -2,10 +2,15 @@ package ca.sheridancollege.project;
 
 /**
  *
+ * Class: Card
+ * Course: SYST17796 Fundamentals of Software Design and Development
+ * Instructor: Ali Hassan
+ * Group: 13
+ * 
  * Represents the standard card from a 52 card deck
  * or alternatively known as a French card.
  * 
- * @author Richard
+ * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
  */
 public class Card {
 
