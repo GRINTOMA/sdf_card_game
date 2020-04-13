@@ -1,12 +1,20 @@
 package ca.sheridancollege.project;
 
 /*
-* Represents the Player in the crazy eight game.
-*
-* Handles operations related to the player and
-* how they interact with the board.  In this case, they
-* will be able draw and play cards.
-*/
+ *
+ * Class: Player
+ * Course: SYST17796 Fundamentals of Software Design and Development
+ * Instructor: Ali Hassan
+ * Group: 13
+ *
+ * Represents the Player in the crazy eight game.
+ *
+ * Handles operations related to the player and
+ * how they interact with the board.  In this case, they
+ * will be able draw and play cards.
+ *
+ * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
+ */
 
 public class Player 
 {

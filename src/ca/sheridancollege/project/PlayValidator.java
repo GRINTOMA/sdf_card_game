@@ -1,8 +1,16 @@
 package ca.sheridancollege.project;
 
 /**
+ * 
+ * Class: PlayValidator
+ * Course: SYST17796 Fundamentals of Software Design and Development
+ * Instructor: Ali Hassan
+ * Group: 13
+ * 
  * Checks for valid inputs and plays according
  * to the game state and the current player's hand.
+ * 
+ * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
  */
 
 public class PlayValidator {
