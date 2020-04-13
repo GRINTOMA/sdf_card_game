@@ -2,14 +2,9 @@ package ca.sheridancollege.project;
 
 /**
  * 
- * Class: Rank
- * Course: SYST17796 Fundamentals of Software Design and Development
- * Instructor: Ali Hassan
- * Group: 13
- * 
  * Represents the Ranks for Card class.
  *
- * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
+ * @author Richard
  */
 public enum Rank {
     ACE(1, "Ace", "A"),

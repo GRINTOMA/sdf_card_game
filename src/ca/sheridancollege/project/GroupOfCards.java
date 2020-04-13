@@ -4,21 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /*
-*
-* Class: GroupOfCards
-* Course: SYST17796 Fundamentals of Software Design and Development
-* Instructor: Ali Hassan
-* Group: 13
-*
-*
 * GroupOfCards is designed to represent both the player's hand
 * alongside the game's deck in which players will draw from.
 * It'll also represent the face-up pile in which cards will be
 * played.
-*
-*
- * @Author Richard Do, Brandon Stegmaier, Matthew Grinton
-*
 */
 
 public class GroupOfCards 
